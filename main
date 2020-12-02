@@ -1,4 +1,5 @@
 import discord
+import os
 from discord import HTTPException
 from discord.ext import commands
 from discord.ext.commands import errors
@@ -7,8 +8,6 @@ from discord.utils import get
 
 bot = commands.Bot(command_prefix="!")
 bot.remove_command('help')
-
-token = "NzgzNjAwNzkxMDI5MTUzODAz.X8dHGw.oQbf-CbLOVUC2Mnl83HX2_WY28c"
 
 @bot.event
 async def on_ready():
@@ -104,5 +103,7 @@ async def 킥(ctx, member: discord.Member, *, reason=None):
         embed=discord.Embed(title="에러", description=f"그 유저를 추방시킬 권한이 없습니다! 권한을 추가하신 후 다시 시도해주십시오.")
         await ctx.send(embed=embed)
         return
-
-bot.run(token)
+        
+        
+access_token = os.environ["BOT_TOKEN"]
+bot.run(access_token)
